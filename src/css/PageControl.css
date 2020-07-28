@@ -30,6 +30,8 @@
     padding: .5rem 1rem;
     line-height: 1.3rem;
     box-sizing: content-box;
+    /* text-align-last: center; */
+    text-align: center;
 }
 
 .page-control__select:hover {

@@ -1,19 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../css/PageControl.css'
+import StoreContext from '../store/StoreContext'
+import {State, Store} from '../types'
+import OptionList from './OptionList'
 
-export const PageControl: React.FC<Props> = ({
-  totalPages,
-  curPage,
-  itemsPerPage
-}: Props) => {
-  const optionElements = []
-  for (let i = 1; i < totalPages + 1; i++) {
-    optionElements.push(
-      <option key={'page-' + i} value={i}>
-        {i}
-      </option>
-    )
-  }
+export const PageControl: React.FC<Props> = ({}: Props) => {
+  const {state, dispatch} = useContext(StoreContext)
 
   function handleChange(value) {
     alert(value)
@@ -23,7 +15,7 @@ export const PageControl: React.FC<Props> = ({
       <div
         className="page-control__btn"
         onClick={() => {
-          handleChange(curPage - 1)
+          handleChange(state.curPage - 1)
         }}
       >
         {'<'}
@@ -31,17 +23,17 @@ export const PageControl: React.FC<Props> = ({
       <select
         name="cur-page"
         className="page-control__select"
-        defaultValue={curPage}
+        defaultValue={state.curPage}
         onChange={evt => {
           handleChange(evt.target.value)
         }}
       >
-        {optionElements}
+        <OptionList totalPages={state.totalPages} />
       </select>
       <div
         className="page-control__btn"
         onClick={() => {
-          handleChange(curPage + 1)
+          handleChange(state.curPage + 1)
         }}
       >
         {'>'}
