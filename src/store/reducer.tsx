@@ -10,13 +10,24 @@ const reducer: Reducer<State, unknown> = (state, action) => {
         ...state,
         pokemonPages
       }
-    case 'SET_ITEMS_PER_PAGE':
+    case 'SET_ITEMS_PER_PAGE': {
+      const totalPages = Math.ceil(state.totalItems / action.itemsPerPage)
       return {
         ...state,
+        totalPages,
         itemsPerPage: action.itemsPerPage,
         pokemonPages: [],
         curPage: 0
       }
+    }
+    case 'SET_TOTAL_ITEMS': {
+      const totalPages = Math.ceil(action.totalItems / state.itemsPerPage)
+      return {
+        ...state,
+        totalPages,
+        totalItems: action.totalItems
+      }
+    }
     case 'SET_CUR_PAGE':
       if (action.curPage >= state.totalPages || action.curPage < 0) return state
       return {

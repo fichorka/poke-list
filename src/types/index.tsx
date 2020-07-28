@@ -20,6 +20,7 @@ export interface State {
   pokemonPages: PokemonPages
   itemsPerPage: ItemsPerPage
   curPage: curPage
+  totalItems: number
   totalPages: TotalPages
 }
 
