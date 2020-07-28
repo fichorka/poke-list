@@ -8,10 +8,7 @@ export const PokeList: React.FC<Props> = ({items, itemsPerPage}: Props) => {
   for (let i = 0; i < itemsPerPage; i++) {
     const item = items && items[i] ? items[i] : null
     const name = item ? item.name : ''
-    const pokemonId = item ? item.id : null
-    result.push(
-      <PokeListItem key={'pokemon' + i} name={name} pokemonId={pokemonId} />
-    )
+    result.push(<PokeListItem key={'pokemon' + i} name={name} />)
   }
   return <div className="poke-list">{result}</div>
 }

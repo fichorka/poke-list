@@ -13,7 +13,12 @@ export type TotalPages = number
 export interface Pokemon {
   name: string
   id?: number
-  pokemonId?: number
+  abilities?: string[]
+  types?: string[]
+  weight?: number
+  height?: number
+  imageUrl?: string
+  isBeingFetched?: boolean
 }
 
 export interface State {
@@ -22,12 +27,13 @@ export interface State {
   curPage: curPage
   totalItems: number
   totalPages: TotalPages
+  pokemonDetails: PokemonList
   fetchId?: symbol
 }
 
 export interface Store {
   state: State
-  dispatch: Dispatch<ReducerAction<Reducer<unknown, unknown>>>
+  dispatch: Dispatch<StoreAction>
 }
 
 export interface StoreAction {
@@ -37,4 +43,28 @@ export interface StoreAction {
   itemsPerPage?: number
   totalItems?: number
   curPage?: number
+  pokemonDetails?: Pokemon
+}
+
+export interface PokeApiResponse {
+  count?: number
+  results?: Array<{
+    name: string
+  }>
+  name?: string
+  abilities?: Array<{
+    ability: {
+      name: string
+    }
+  }>
+  types?: Array<{
+    type: {
+      name: string
+    }
+  }>
+  weight: number
+  height: number
+  sprites?: {
+    front_default: string
+  }
 }

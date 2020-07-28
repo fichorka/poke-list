@@ -10,7 +10,7 @@ export const PokemonPage: React.FC = () => {
       <Link to="/">Go back</Link>
       <h1>Details</h1>
       <Switch>
-        <Route path={`${match.path}/:pokemonId`}>
+        <Route path={`${match.path}/:name`}>
           <PokemonDetails />
         </Route>
         <Route path={`${match.path}`}>

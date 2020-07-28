@@ -40,6 +40,15 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         shouldFetch,
         fetchId
       }
+    case 'SET_POKEMON_DETAILS':
+      console.log(action)
+      return {
+        ...state,
+        pokemonDetails: {
+          ...state.pokemonDetails,
+          [action.pokemonDetails.name]: action.pokemonDetails
+        }
+      }
   }
 }
 

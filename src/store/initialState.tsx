@@ -6,7 +6,8 @@ const initialState = {
   curPage: 0,
   totalPages: 1,
   totalItems: 0,
-  shouldFetch: true
+  shouldFetch: true,
+  pokemonDetails: []
 } as State
 
 export default initialState
