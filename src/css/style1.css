@@ -1,0 +1,63 @@
+@media screen and (min-aspect-ratio: 3/4) {
+  html {
+    font-size: 3vh;
+  }
+
+  body {
+    width: 60%;
+    min-width: 60vh;
+  }
+}
+
+@media screen and (max-aspect-ratio: 3/4) {
+  html {
+    font-size: 6vw;
+  }
+
+  body {
+    width: 100%;
+  }
+}
+
+:root {
+  --bg-col: #f0f0f0;
+  --bg-col2: #d8d8d8;
+  --bg-col3: #c0c0c0;
+  --font-col: #121212;
+  --font-fam: Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-col);
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-fam);
+}
+
+.poke-list {
+  padding: 0.5rem;
+}
+
+.poke-list__item {
+  background: var(--bg-col2);
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.2rem;
+  text-decoration: none;
+  color: var(--font-col);
+  display: block;
+}
+
+.poke-list__item:first-child {
+  margin-top: 0;
+}
+
+.poke-list__item:last-child {
+  margin-bottom: 0;
+}
+
+.poke-list__item:hover {
+  background: var(--bg-col3);
+}

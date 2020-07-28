@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: './index.html',
-      template: './src/html/home.html'
+      template: './src/html/index.html'
     })
   ],
   resolve: {
@@ -22,10 +22,15 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true
   }
 }
