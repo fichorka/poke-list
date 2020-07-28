@@ -5,7 +5,8 @@ const initialState = {
   itemsPerPage: 10,
   curPage: 0,
   totalPages: 1,
-  totalItems: 0
+  totalItems: 0,
+  shouldFetch: true
 } as State
 
 export default initialState

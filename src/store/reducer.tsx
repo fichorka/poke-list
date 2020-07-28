@@ -3,12 +3,13 @@ import {Reducer} from 'react'
 
 const reducer: Reducer<State, StoreAction> = (state, action) => {
   switch (action.type) {
-    case 'SAVE_POKEMON_PAGE':
+    case 'SET_POKEMON_PAGE':
       const pokemonPages = state.pokemonPages.slice()
-      pokemonPages[action.index] = action.pokemonList
+      pokemonPages[action.index] = action.pokemonPage
       return {
         ...state,
-        pokemonPages
+        pokemonPages,
+        shouldFetch: false
       }
     case 'SET_ITEMS_PER_PAGE': {
       const totalPages = Math.ceil(state.totalItems / action.itemsPerPage)
@@ -30,9 +31,14 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
     }
     case 'SET_CUR_PAGE':
       if (action.curPage >= state.totalPages || action.curPage < 0) return state
+      const page = state.pokemonPages[action.curPage]
+      const shouldFetch = page ? true : true
+      const fetchId = Symbol()
       return {
         ...state,
-        curPage: action.curPage
+        curPage: action.curPage,
+        shouldFetch,
+        fetchId
       }
   }
 }

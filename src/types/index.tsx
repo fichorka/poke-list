@@ -22,6 +22,7 @@ export interface State {
   curPage: curPage
   totalItems: number
   totalPages: TotalPages
+  fetchId?: symbol
 }
 
 export interface Store {
@@ -32,7 +33,7 @@ export interface Store {
 export interface StoreAction {
   type: string
   index?: number
-  pokemonList?: PokemonList
+  pokemonPage?: PokemonList
   itemsPerPage?: number
   totalItems?: number
   curPage?: number

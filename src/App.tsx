@@ -8,9 +8,12 @@ import storeInstance from './store'
 import reducer from './store/reducer'
 import initialState from './store/initialState'
 import StoreContextProvider from './store/StoreContextProvider'
+import useFetch from './custom_hooks/useFetch'
 
 export const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useFetch(state, dispatch)
 
   return (
     <StoreContext.Provider value={{state, dispatch}}>
