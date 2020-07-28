@@ -12,6 +12,8 @@ export type TotalPages = number
 
 export interface Pokemon {
   name: string
+  id?: number
+  pokemonId?: number
 }
 
 export interface State {

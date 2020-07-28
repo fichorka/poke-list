@@ -1,19 +1,28 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PokeList from '../components/PokeList'
 import {Pokemon} from '../types'
+import PageControl from '../components/PageControl'
+import StoreContext from '../store/StoreContext'
 
 export const HomePage: React.FC = () => {
-  const items: Pokemon[] = [
-    {name: 'sdf'},
-    {name: 'gfsadhasu4dsg sdg s '},
-    {name: 'ssddf'},
-    {name: 'hjgfgd'},
-    {name: 'dsgsgsdf'},
-    {name: 'hghfdwd'}
-  ]
+  const {state} = useContext(StoreContext)
+
   return (
     <>
-      <PokeList items={items} />
+      <PageControl
+        totalPages={state.totalPages}
+        curPage={state.curPage}
+        itemsPerPage={state.itemsPerPage}
+      />
+      <PokeList
+        items={state.pokemonPages[state.curPage]}
+        itemsPerPage={state.itemsPerPage}
+      />
+      <PageControl
+        totalPages={state.totalPages}
+        curPage={state.curPage}
+        itemsPerPage={state.itemsPerPage}
+      />
     </>
   )
 }

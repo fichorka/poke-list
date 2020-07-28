@@ -24,6 +24,7 @@
   --bg-col-2: #d8d8d8;
   --bg-col-3: #c0c0c0;
   --font-col: #121212;
+  --col-off: #585858;
   --font-fam: Arial, sans-serif;
 }
 
@@ -49,6 +50,15 @@ body {
   color: var(--font-col);
   display: block;
   line-height: 1.3rem;
+}
+
+.poke-list__item:empty {
+  pointer-events: none;
+}
+
+.poke-list__item:empty::before {
+  content: "\a0";
+  pointer-events: none;
 }
 
 .poke-list__item:first-child {
