@@ -21,8 +21,8 @@
 
 :root {
   --bg-col: #f0f0f0;
-  --bg-col2: #d8d8d8;
-  --bg-col3: #c0c0c0;
+  --bg-col-2: #d8d8d8;
+  --bg-col-3: #c0c0c0;
   --font-col: #121212;
   --font-fam: Arial, sans-serif;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .poke-list__item {
-  background: var(--bg-col2);
+  background: var(--bg-col-2);
   padding: 0.5rem;
   font-size: 1rem;
   margin: 0.5rem 0;
@@ -48,6 +48,7 @@ body {
   text-decoration: none;
   color: var(--font-col);
   display: block;
+  line-height: 1.3rem;
 }
 
 .poke-list__item:first-child {
@@ -59,5 +60,5 @@ body {
 }
 
 .poke-list__item:hover {
-  background: var(--bg-col3);
+  background: var(--bg-col-3);
 }
