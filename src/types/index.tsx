@@ -28,3 +28,12 @@ export interface Store {
   state: State
   dispatch: Dispatch<ReducerAction<Reducer<unknown, unknown>>>
 }
+
+export interface StoreAction {
+  type: string
+  index?: number
+  pokemonList?: PokemonList
+  itemsPerPage?: number
+  totalItems?: number
+  curPage?: number
+}

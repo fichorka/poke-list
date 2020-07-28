@@ -1,7 +1,7 @@
-import {State} from '../types'
-import {ReducerAction, Reducer, SetStateAction} from 'react'
+import {State, StoreAction} from '../types'
+import {Reducer} from 'react'
 
-const reducer: Reducer<State, unknown> = (state, action) => {
+const reducer: Reducer<State, StoreAction> = (state, action) => {
   switch (action.type) {
     case 'SAVE_POKEMON_PAGE':
       const pokemonPages = state.pokemonPages.slice()
