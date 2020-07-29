@@ -9,11 +9,14 @@ import reducer from './store/reducer'
 import initialState from './store/initialState'
 import StoreContextProvider from './store/StoreContextProvider'
 import useFetch from './custom_hooks/useFetch'
+import ModalComponent from './components/ModalComponent'
+import useFetchPokemonByType from './custom_hooks/useFetchPokemonByType'
 
 export const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useFetch(state, dispatch)
+  useFetchPokemonByType(state.selectedModalType, dispatch)
 
   return (
     <StoreContext.Provider value={{state, dispatch}}>
@@ -26,6 +29,7 @@ export const App: React.FC = () => {
             <HomePage />
           </Route>
         </Switch>
+        {state.isModalOpen && <ModalComponent />}
       </Router>
     </StoreContext.Provider>
   )

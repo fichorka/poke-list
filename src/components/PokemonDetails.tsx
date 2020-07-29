@@ -21,7 +21,28 @@ export const PokemonDetails: React.FC = () => {
       <h3>Pokemon name: {pokemon && pokemon.name}</h3>
       <div>
         <div>Abilities: {pokemon && pokemon.abilities.join(', ')}</div>
-        <div>Types: {pokemon && pokemon.types.join(', ')}</div>
+        <div>
+          Types:{' '}
+          {pokemon &&
+            pokemon.types.map((t, i, arr) => (
+              <>
+                <span
+                  key={t + i}
+                  className="modal-opener"
+                  onClick={() => {
+                    dispatch({
+                      type: 'SET_MODAL_STATE',
+                      isModalOpen: true,
+                      selectedModalType: t
+                    })
+                  }}
+                >
+                  {t}
+                </span>
+                {i === arr.length - 1 ? '' : ', '}
+              </>
+            ))}
+        </div>
         <div>Weight: {pokemon && pokemon.weight}</div>
         <div>Height: {pokemon && pokemon.height}</div>
       </div>

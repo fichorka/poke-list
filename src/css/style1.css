@@ -72,3 +72,14 @@ body {
 .poke-list__item:hover {
   background: var(--bg-col-3);
 }
+
+.modal-opener {
+  color: blue;
+  font-weight: bold;
+  cursor: default;
+  border-radius: .2rem;
+}
+
+.modal-opener:hover {
+  background: #6af8;
+}

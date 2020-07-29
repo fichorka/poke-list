@@ -23,12 +23,15 @@ export interface Pokemon {
 
 export interface State {
   pokemonPages: PokemonPages
+  pokemonByType: Array<{type: string; pokemon: Pokemon[]}>
+  selectedModalType: string | null
   itemsPerPage: ItemsPerPage
   curPage: curPage
   totalItems: number
   totalPages: TotalPages
   pokemonDetails: PokemonList
   fetchId?: symbol
+  isModalOpen: boolean
 }
 
 export interface Store {
@@ -44,6 +47,10 @@ export interface StoreAction {
   totalItems?: number
   curPage?: number
   pokemonDetails?: Pokemon
+  isModalOpen?: boolean
+  selectedModalType?: string | null
+  pokemonType?: string
+  pokemonList?: PokemonList
 }
 
 export interface PokeApiResponse {
@@ -67,4 +74,5 @@ export interface PokeApiResponse {
   sprites?: {
     front_default: string
   }
+  pokemon: Array<{pokemon: {name: string}}>
 }

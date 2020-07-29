@@ -50,6 +50,30 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
           [action.pokemonDetails.name]: action.pokemonDetails
         }
       }
+    case 'SET_MODAL_STATE':
+      return {
+        ...state,
+        isModalOpen: action.isModalOpen,
+        selectedModalType: action.selectedModalType
+      }
+    case 'SET_POKEMON_BY_TYPE': {
+      if (
+        state.pokemonByType.filter(pbt => pbt.type === action.pokemonType)
+          .length
+      )
+        return state
+      else
+        return {
+          ...state,
+          pokemonByType: [
+            ...state.pokemonByType,
+            {type: action.pokemonType, pokemon: action.pokemonList}
+          ]
+        }
+    }
+    default:
+      console.log(action)
+      debugger
   }
 }
 
