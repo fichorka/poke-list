@@ -1,17 +1,18 @@
-import {useEffect} from 'react'
+import {useEffect, Dispatch} from 'react'
 import fetchPokemonPage from '../api/fetchPokemonPage'
 import fetchPokemonDetails from '../api/fetchPokemonDetails'
+import {setPokemonDetails} from '../store/action_creators/actions'
+import {StoreAction} from '../types'
 
-function useFetchDetails(shouldFetch, name, dispatch) {
+function useFetchDetails(
+  shouldFetch: boolean,
+  name: string,
+  dispatch: Dispatch<StoreAction>
+): void {
   useEffect(() => {
     if (shouldFetch) {
-      dispatch({
-        type: 'SET_POKEMON_DETAILS',
-        singlePokemon: {name, isBeingFetched: true}
-      })
-      fetchPokemonDetails(name).then(res =>
-        dispatch({type: 'SET_POKEMON_DETAILS', singlePokemon: res})
-      )
+      dispatch(setPokemonDetails({name, isBeingFetched: true}))
+      fetchPokemonDetails(name).then(res => dispatch(setPokemonDetails(res)))
     }
   }, [shouldFetch])
 }

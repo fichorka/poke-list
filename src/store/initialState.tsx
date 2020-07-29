@@ -13,8 +13,8 @@ const initialState = {
   isModalOpen: false,
   listState: 0,
   listFilter: {
-    what: 'name',
-    value: 'pikachu'
+    what: 'all',
+    value: ''
   }
 } as State
 

@@ -1,20 +1,19 @@
-import {useEffect} from 'react'
-import fetchPokemonPage from '../api/fetchPokemonPage'
-import fetchPokemonDetails from '../api/fetchPokemonDetails'
+import {useEffect, Dispatch} from 'react'
 import fetchPokemonByType from '../api/fetchPokemonByType'
+import {setPokemonByType} from '../store/action_creators/actions'
+import {StoreAction} from '../types'
 
-function useFetchPokemonByType(type, dispatch) {
+function useFetchModalPokemon(
+  type: string,
+  dispatch: Dispatch<StoreAction>
+): void {
   useEffect(() => {
     if (type) {
       fetchPokemonByType(type).then(res =>
-        dispatch({
-          type: 'SET_POKEMON_BY_TYPE',
-          pokemonType: type,
-          pokemonList: res
-        })
+        dispatch(setPokemonByType(type, res))
       )
     }
   }, [type])
 }
 
-export default useFetchPokemonByType
+export default useFetchModalPokemon

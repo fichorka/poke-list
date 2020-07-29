@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import StoreContext from '../store/StoreContext'
 import '../css/modal.css'
+import {setModalState} from '../store/action_creators/actions'
 
 export const ModalComponent: React.FC = () => {
   const {state, dispatch} = useContext(StoreContext)
@@ -15,11 +16,7 @@ export const ModalComponent: React.FC = () => {
         <div
           className="modal__control"
           onClick={() => {
-            dispatch({
-              type: 'SET_MODAL_STATE',
-              isModalOpen: false,
-              selectedModalType: null
-            })
+            dispatch(setModalState(false, null))
           }}
         >
           Close

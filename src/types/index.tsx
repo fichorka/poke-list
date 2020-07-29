@@ -54,6 +54,7 @@ export interface StoreAction {
   pokemonType?: string
   pokemonList?: PokemonList
   listFilter?: ListFilter | null
+  shouldFetch?: boolean
 }
 
 type TotalItems = number

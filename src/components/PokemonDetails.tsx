@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import StoreContext from '../store/StoreContext'
 import useFetchDetails from '../custom_hooks/useFetchDetails'
+import {setModalState} from '../store/action_creators/actions'
 
 export const PokemonDetails: React.FC = () => {
   const {name} = useParams()
@@ -30,11 +31,7 @@ export const PokemonDetails: React.FC = () => {
                   key={t + i}
                   className="modal-opener"
                   onClick={() => {
-                    dispatch({
-                      type: 'SET_MODAL_STATE',
-                      isModalOpen: true,
-                      selectedModalType: t
-                    })
+                    dispatch(setModalState(true, t))
                   }}
                 >
                   {t}

@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
-import {State, Store} from '../types'
 import OptionList from './OptionList'
 import '../css/ListControl.css'
+import {setItemsPerPage} from '../store/action_creators/actions'
 
 export const ListControl: React.FC = () => {
   const {state, dispatch} = useContext(StoreContext)
@@ -11,7 +11,7 @@ export const ListControl: React.FC = () => {
   const {itemsPerPage, totalItems} = state
 
   function handleChange(value) {
-    dispatch({type: 'SET_ITEMS_PER_PAGE', itemsPerPage: parseInt(value)})
+    dispatch(setItemsPerPage(parseInt(value)))
   }
   return (
     <div className="list-control">

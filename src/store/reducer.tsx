@@ -4,13 +4,20 @@ import {Reducer} from 'react'
 const reducer: Reducer<State, StoreAction> = (state, action) => {
   console.log(state)
   switch (action.type) {
+    case 'SET_SHOULD_FETCH': {
+      const fetchId = action.shouldFetch ? Symbol() : state.fetchId
+      return {
+        ...state,
+        shouldFetch: action.shouldFetch,
+        fetchId
+      }
+    }
     case 'SET_POKEMON_PAGE':
       const pokemonPages = state.pokemonPages.slice()
       pokemonPages[action.index] = action.pokemonPage
       return {
         ...state,
-        pokemonPages,
-        shouldFetch: false
+        pokemonPages
       }
     case 'SET_ITEMS_PER_PAGE': {
       if (action.itemsPerPage <= 0 || action.itemsPerPage > state.totalItems)
@@ -20,6 +27,7 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         ...state,
         totalPages,
         shouldFetch: true,
+        fetchId: Symbol(),
         itemsPerPage: action.itemsPerPage,
         pokemonPages: [],
         curPage: 0
@@ -33,17 +41,20 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         totalItems: action.totalItems
       }
     }
-    case 'SET_CUR_PAGE':
+    case 'SET_CUR_PAGE': {
       if (action.curPage >= state.totalPages || action.curPage < 0) return state
+
       const page = state.pokemonPages[action.curPage]
-      const shouldFetch = page ? true : true
-      const fetchId = Symbol()
+      const shouldFetch = page ? false : true
+      let fetchId = state.fetchId
+      if (shouldFetch) fetchId = Symbol()
       return {
         ...state,
         curPage: action.curPage,
         shouldFetch,
         fetchId
       }
+    }
     case 'SET_POKEMON_DETAILS':
       return {
         ...state,
@@ -77,8 +88,8 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
       return {
         ...state,
         listState: action.listFilter,
-        pokemonPages: [],
-        shouldFetch: true
+        pokemonPages: []
+        // shouldFetch: true
       }
     default:
       console.log(action)
