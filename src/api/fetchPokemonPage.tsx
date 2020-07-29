@@ -1,8 +1,12 @@
+import {PokemonPageReturn} from '../types'
+
 const url = 'https://pokeapi.co/api/v2/pokemon/'
 
-'https://pokeapi.co/api/v2/pokemon/?offset=40&limit=20'
-
-function fetchPokemonPage(page, itemsPerPage, fetchId) {
+function fetchPokemonPage({
+  page,
+  itemsPerPage,
+  fetchId
+}: Props): Promise<PokemonPageReturn> {
   const requestUrl =
     url + `?offset=${page * itemsPerPage}&limit=${itemsPerPage}`
   return fetchUtil(requestUrl).then(res => ({
@@ -17,3 +21,9 @@ function fetchUtil(url) {
 }
 
 export default fetchPokemonPage
+
+interface Props {
+  page: number
+  itemsPerPage: number
+  fetchId: symbol
+}

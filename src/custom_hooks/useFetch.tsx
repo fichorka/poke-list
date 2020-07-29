@@ -1,13 +1,19 @@
-import {useEffect} from 'react'
+import {useEffect, Dispatch} from 'react'
 import fetchPokemonPage from '../api/fetchPokemonPage'
+import {State, StoreAction} from '../types'
+import fetchPokemonByType from '../api/fetchPokemonByType'
 
-function useFetch(state, dispatch) {
+function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
   useEffect(() => {
     if (state.shouldFetch) {
-      fetchPokemonPage(state.curPage, state.itemsPerPage, state.fetchId).then(
-        res => {
+      if (state.listFilter.what === 'all') {
+        fetchPokemonPage({
+          page: state.curPage,
+          itemsPerPage: state.itemsPerPage,
+          fetchId: state.fetchId
+        }).then(res => {
           if (res.fetchId === state.fetchId) {
-            // update only if fetchIds match to avoid late responses
+            // update only if fetchIds match to pevent old responses from messing up the state
             dispatch({
               type: 'SET_POKEMON_PAGE',
               pokemonPage: res.page,
@@ -18,8 +24,24 @@ function useFetch(state, dispatch) {
               totalItems: res.totalItems
             })
           }
-        }
-      )
+        })
+      } else if (state.listFilter.what === 'type') {
+        fetchPokemonByType(state.listFilter.value).then(res => {
+          dispatch({
+            type: 'SET_TOTAL_ITEMS',
+            totalItems: res.length
+          })
+          dispatch({
+            type: 'SET_ITEMS_PER_PAGE',
+            itemsPerPage: res.length
+          })
+          dispatch({
+            type: 'SET_POKEMON_PAGE',
+            pokemonPage: res,
+            index: 0
+          })
+        })
+      }
     }
   }, [state.shouldFetch, state.curPage])
 }

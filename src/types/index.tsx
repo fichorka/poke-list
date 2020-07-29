@@ -27,11 +27,13 @@ export interface State {
   selectedModalType: string | null
   itemsPerPage: ItemsPerPage
   curPage: curPage
+  shouldFetch: boolean
   totalItems: number
   totalPages: TotalPages
   pokemonDetails: PokemonList
   fetchId?: symbol
   isModalOpen: boolean
+  listFilter: ListFilter | null
 }
 
 export interface Store {
@@ -51,6 +53,20 @@ export interface StoreAction {
   selectedModalType?: string | null
   pokemonType?: string
   pokemonList?: PokemonList
+  listFilter?: ListFilter | null
+}
+
+type TotalItems = number
+
+export interface PokemonPageReturn {
+  totalItems: number
+  page: PokemonList
+  fetchId: symbol
+}
+
+export interface ListFilter {
+  what: 'all' | 'type' | 'ability'
+  value: string
 }
 
 export interface PokeApiResponse {

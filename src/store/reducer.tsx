@@ -71,6 +71,13 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
           ]
         }
     }
+    case 'SET_LIST_FILTER':
+      return {
+        ...state,
+        listState: action.listFilter,
+        pokemonPages: [],
+        shouldFetch: true
+      }
     default:
       console.log(action)
       debugger

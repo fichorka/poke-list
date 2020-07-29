@@ -10,7 +10,12 @@ const initialState = {
   totalItems: 0,
   shouldFetch: true,
   pokemonDetails: [],
-  isModalOpen: false
+  isModalOpen: false,
+  listState: 0,
+  listFilter: {
+    what: 'all',
+    value: ''
+  }
 } as State
 
 export default initialState
