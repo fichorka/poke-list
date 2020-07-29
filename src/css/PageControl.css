@@ -1,3 +1,9 @@
+@media screen and (max-aspect-ratio: 3/4) {
+    .page-control * {
+        flex-grow: 1;
+    }
+}
+
 .page-control {
     display: flex;
     justify-content: center;
@@ -15,7 +21,6 @@
     text-align: center;
     box-sizing: content-box;
     user-select: none;
-    /* cursor: pointer; */
 }
 
 .page-control__btn:hover {
@@ -30,7 +35,7 @@
     padding: .5rem 1rem;
     line-height: 1.3rem;
     box-sizing: content-box;
-    /* text-align-last: center; */
+    text-align-last: center;
     text-align: center;
 }
 

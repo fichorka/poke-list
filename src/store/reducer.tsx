@@ -16,6 +16,7 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
       return {
         ...state,
         totalPages,
+        shouldFetch: true,
         itemsPerPage: action.itemsPerPage,
         pokemonPages: [],
         curPage: 0
