@@ -8,14 +8,14 @@ export const PokemonDetails: React.FC = () => {
   const {state, dispatch} = useContext(StoreContext)
 
   const shouldFetch =
-    state.pokemonDetails[name] && !state.pokemonDetails[name].isBeingFetched
+    !state.pokemonDetails[name] ||
+    (!state.pokemonDetails[name] && state.pokemonDetails[name].isBeingFetched)
 
-  useFetchDetails(!shouldFetch, name, dispatch)
+  useFetchDetails(shouldFetch, name, dispatch)
 
   const target = state.pokemonDetails[name]
   const pokemon = target && !target.isBeingFetched ? target : null
 
-  console.log(pokemon)
   return (
     <div>
       <h3>Pokemon name: {pokemon && pokemon.name}</h3>

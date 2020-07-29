@@ -13,6 +13,8 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         shouldFetch: false
       }
     case 'SET_ITEMS_PER_PAGE': {
+      if (action.itemsPerPage <= 0 || action.itemsPerPage > state.totalItems)
+        return state
       const totalPages = Math.ceil(state.totalItems / action.itemsPerPage)
       return {
         ...state,
