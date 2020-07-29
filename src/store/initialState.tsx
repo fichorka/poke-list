@@ -9,12 +9,12 @@ const initialState = {
   totalPages: 1,
   totalItems: 0,
   shouldFetch: true,
-  pokemonDetails: [],
+  pokemonDetails: {},
   isModalOpen: false,
   listState: 0,
   listFilter: {
-    what: 'ability',
-    value: 'torrent'
+    what: 'name',
+    value: 'pikachu'
   }
 } as State
 

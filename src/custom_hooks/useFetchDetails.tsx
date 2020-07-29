@@ -7,10 +7,10 @@ function useFetchDetails(shouldFetch, name, dispatch) {
     if (shouldFetch) {
       dispatch({
         type: 'SET_POKEMON_DETAILS',
-        pokemonDetails: {name, isBeingFetched: true}
+        singlePokemon: {name, isBeingFetched: true}
       })
       fetchPokemonDetails(name).then(res =>
-        dispatch({type: 'SET_POKEMON_DETAILS', pokemonDetails: res})
+        dispatch({type: 'SET_POKEMON_DETAILS', singlePokemon: res})
       )
     }
   }, [shouldFetch])

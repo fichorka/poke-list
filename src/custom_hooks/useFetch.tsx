@@ -3,6 +3,7 @@ import fetchPokemonPage from '../api/fetchPokemonPage'
 import {State, StoreAction} from '../types'
 import fetchPokemonByType from '../api/fetchPokemonByType'
 import fetchPokemonByAbility from '../api/fetchPokemonByAbility'
+import fetchPokemonDetails from '../api/fetchPokemonDetails'
 
 function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
   useEffect(() => {
@@ -26,6 +27,36 @@ function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
             })
           }
         })
+      } else if (state.listFilter.what === 'name') {
+        const targetPokemon = state.pokemonDetails[state.listFilter.value]
+        if (targetPokemon) {
+          dispatch({
+            type: 'SET_TOTAL_ITEMS',
+            itemsPerPage: 1
+          })
+          dispatch({
+            type: 'SET_ITEMS_PER_PAGE',
+            itemsPerPage: 1
+          })
+          dispatch({
+            type: 'SET_POKEMON_PAGE',
+            pokemonPage: [targetPokemon],
+            index: 0
+          })
+        } else {
+          fetchPokemonDetails(state.listFilter.value).then(res => {
+            dispatch({
+              type: 'SET_TOTAL_ITEMS',
+              totalItems: 1
+            })
+            dispatch({
+              type: 'SET_ITEMS_PER_PAGE',
+              itemsPerPage: 1
+            })
+            dispatch({type: 'SET_POKEMON_PAGE', pokemonPage: [res], index: 0})
+          })
+        }
+        console.log(state)
       } else if (state.listFilter.what === 'type') {
         fetchPokemonByType(state.listFilter.value).then(res => {
           dispatch({

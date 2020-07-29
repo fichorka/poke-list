@@ -2,6 +2,7 @@ import {State, StoreAction} from '../types'
 import {Reducer} from 'react'
 
 const reducer: Reducer<State, StoreAction> = (state, action) => {
+  console.log(state)
   switch (action.type) {
     case 'SET_POKEMON_PAGE':
       const pokemonPages = state.pokemonPages.slice()
@@ -42,12 +43,11 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         fetchId
       }
     case 'SET_POKEMON_DETAILS':
-      console.log(action)
       return {
         ...state,
         pokemonDetails: {
           ...state.pokemonDetails,
-          [action.pokemonDetails.name]: action.pokemonDetails
+          [action.singlePokemon.name]: action.singlePokemon
         }
       }
     case 'SET_MODAL_STATE':
