@@ -5,7 +5,8 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -30,7 +31,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './dist/**',
     historyApiFallback: true
   }
 }
