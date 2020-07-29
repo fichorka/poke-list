@@ -13,8 +13,8 @@ const initialState = {
   isModalOpen: false,
   listState: 0,
   listFilter: {
-    what: 'all',
-    value: ''
+    what: 'ability',
+    value: 'torrent'
   }
 } as State
 
