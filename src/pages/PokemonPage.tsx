@@ -7,7 +7,9 @@ export const PokemonPage: React.FC = () => {
   const match = useRouteMatch()
   return (
     <div className="poke-details">
-      <Link to="/">Go back</Link>
+      <Link to="/" className="back-btn">
+        &lt; Go back
+      </Link>
       <Switch>
         <Route path={`${match.path}/:name`}>
           <PokemonDetails />

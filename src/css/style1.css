@@ -31,14 +31,11 @@
 body {
   background: var(--bg-col);
   margin: 0 auto;
-  padding: 0;
+  padding: 0.25rem 0;
   box-sizing: border-box;
   font-family: var(--font-fam);
 }
 
-.poke-list {
-  padding: 0.5rem;
-}
 
 .poke-list__item {
   background: var(--bg-col-2);
@@ -64,7 +61,6 @@ body {
 }
 
 .fetching .poke-list__item:empty {
-  /* content: 'Loading...'; */
   transition: opacity 1s;
   opacity: 0.7;
   animation: .2s ease-in 0s infinite alternate loading;
@@ -76,11 +72,11 @@ body {
 }
 
 .poke-list__item:first-child {
-  margin-top: 0;
+  margin-top: .25rem;
 }
 
 .poke-list__item:last-child {
-  margin-bottom: 0;
+  margin-bottom: .25rem;
 }
 
 .poke-list__item:hover {
@@ -89,6 +85,11 @@ body {
 
 .text--bold {
   font-weight: bold;
+}
+
+.ui-wrapper {
+  background: var(--bg-col-2);
+  border-radius: .2rem;
 }
 
 @keyframes loading {

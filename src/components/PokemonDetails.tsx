@@ -8,7 +8,7 @@ import '../css/pokemonDetailsStyle.css'
 export const PokemonDetails: React.FC = () => {
   const {name} = useParams()
   const {state, dispatch} = useContext(StoreContext)
-  const [isLoading, setImgClass] = useState(true)
+  const [isImgLoading, setIsImgLoading] = useState(true)
 
   const shouldFetch =
     !state.pokemonDetails[name] ||
@@ -18,10 +18,9 @@ export const PokemonDetails: React.FC = () => {
 
   const target = state.pokemonDetails[name]
   const pokemon = target && !target.isBeingFetched ? target : null
-  // let imgClass = 'poke-image poke-image--loading'
 
   function handleLoad() {
-    setImgClass(false)
+    setIsImgLoading(false)
   }
 
   return (
@@ -31,15 +30,15 @@ export const PokemonDetails: React.FC = () => {
       </h3>
       <div
         className={
-          isLoading
+          isImgLoading
             ? 'image-container image-container--loading'
             : 'image-container '
         }
       >
-        {isLoading && <div className="spinner"></div>}
+        {isImgLoading && <div className="spinner"></div>}
         <img
           className={
-            isLoading ? 'poke-image poke-image--loading' : 'poke-image '
+            isImgLoading ? 'poke-image poke-image--loading' : 'poke-image '
           }
           onLoad={handleLoad}
           src={pokemon ? pokemon.imageUrl : ''}
@@ -58,7 +57,7 @@ export const PokemonDetails: React.FC = () => {
           <span className="text--bold">Types:</span>{' '}
           {pokemon &&
             pokemon.types.map((t, i, arr) => (
-              <>
+              <React.Fragment key={i}>
                 <span
                   key={t + i}
                   className="modal-opener"
@@ -69,7 +68,7 @@ export const PokemonDetails: React.FC = () => {
                   {t}
                 </span>
                 {i === arr.length - 1 ? '' : ', '}
-              </>
+              </React.Fragment>
             ))}
         </div>
         <div className="feature-list__item">

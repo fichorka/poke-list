@@ -1,8 +1,6 @@
 import React, {useContext} from 'react'
-import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
 import OptionList from './OptionList'
-import '../css/ListControl.css'
 import {
   setItemsPerPage,
   setShouldFetch,
@@ -24,12 +22,12 @@ export const ListControl: React.FC = () => {
     dispatch(setShouldFetch(true))
   }
   return (
-    <div className="list-control">
+    <div className="control control--right">
       <FilterComponent />
       <input
         disabled={state.totalItems !== state.itemsPerPage}
         name="cur-page"
-        className="list-control__item"
+        className="ui-item control__item"
         value={searchFilter}
         onChange={evt => {
           handleInputChange(evt.target.value)
@@ -37,12 +35,12 @@ export const ListControl: React.FC = () => {
         placeholder="Search here"
       ></input>
 
-      <div>
+      <div className="ui-wrapper control__item">
         <div className="control-label">Items per page</div>
         <select
           disabled={state.listFilter.what !== 'all'}
           name="cur-page"
-          className="list-control__item"
+          className="ui-item"
           value={itemsPerPage}
           onChange={evt => {
             handleChange(evt.target.value)

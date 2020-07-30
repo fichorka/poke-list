@@ -1,20 +1,22 @@
 import React, {useContext} from 'react'
-import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
 import OptionList from './OptionList'
 import {setCurPage} from '../store/action_creators/actions'
 
-export const PageControl: React.FC<Props> = ({totalPages, curPage}: Props) => {
-  const {dispatch} = useContext(StoreContext)
+export const PageControl: React.FC = () => {
+  const {
+    state: {totalPages, curPage},
+    dispatch
+  } = useContext(StoreContext)
 
   function handleChange(value) {
     dispatch(setCurPage(parseInt(value)))
   }
 
   return (
-    <div className="page-control">
+    <div className="control control--center control--page">
       <div
-        className="page-control__btn"
+        className="ui-item control__item"
         onClick={() => {
           handleChange(curPage - 1)
         }}
@@ -23,7 +25,7 @@ export const PageControl: React.FC<Props> = ({totalPages, curPage}: Props) => {
       </div>
       <select
         name="cur-page"
-        className="page-control__select"
+        className="ui-item control__item"
         value={curPage}
         onChange={evt => {
           handleChange(evt.target.value)
@@ -32,7 +34,7 @@ export const PageControl: React.FC<Props> = ({totalPages, curPage}: Props) => {
         <OptionList totalPages={totalPages} />
       </select>
       <div
-        className="page-control__btn"
+        className="ui-item control__item"
         onClick={() => {
           handleChange(curPage + 1)
         }}
@@ -44,8 +46,3 @@ export const PageControl: React.FC<Props> = ({totalPages, curPage}: Props) => {
 }
 
 export default PageControl
-
-interface Props {
-  totalPages: number
-  curPage: number
-}

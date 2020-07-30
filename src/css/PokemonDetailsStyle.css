@@ -1,6 +1,22 @@
+.back-btn {
+    margin: .5rem;
+    padding: .5rem;
+    background: var(--bg-col-2);
+    display: block;
+    text-align: center;
+    border-radius: .2rem;
+    color: var(--font-col);
+    text-decoration: none;
+}
+
+.back-btn:active {
+    background: var(--bg-col-3);
+}
+
 .title {
     font-size: 1.2rem;
     font-weight: bold;
+    margin: 1rem .5rem
 }
 
 .title--loading {
@@ -27,7 +43,7 @@
     height: 8rem;
     background: transparent;
     transition: background .2s;
-    margin: .5rem auto;
+    margin: 1rem auto;
 }
 
 .image-container--loading {
@@ -57,6 +73,7 @@
     padding: 1rem;
     background: var(--bg-col-2);
     border-radius: .2rem;
+    margin: .5rem;
 }
 
 .feature-list.feature-list--loading {

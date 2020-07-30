@@ -1,8 +1,6 @@
 import React, {useContext} from 'react'
-import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
 import OptionList from './OptionList'
-import '../css/ListControl.css'
 import {
   setShouldFetch,
   setFilterValue,
@@ -30,11 +28,11 @@ export const FilterComponent: React.FC = () => {
 
   return (
     <>
-      <div>
+      <div className="ui-wrapper control__item">
         <div className="control-label">Filter by</div>
         <select
           name="cur-page"
-          className="list-control__item"
+          className="ui-item"
           value={what}
           onChange={evt => {
             handleWhatChange(evt.target.value)
@@ -42,14 +40,16 @@ export const FilterComponent: React.FC = () => {
         >
           <OptionList items={['all', 'type', 'ability']} />
         </select>
-        {/* </div>
+      </div>
+      {/* </div>
 
       <div>
         <div className="control-label">Filter by</div> */}
+      <div className="control__item">
         <select
           disabled={state.listFilter.what === 'all'}
           name="cur-page"
-          className="list-control__item"
+          className="ui-item"
           value={value}
           onChange={evt => {
             handleValueChange(evt.target.value)

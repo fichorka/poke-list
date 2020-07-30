@@ -1,7 +1,5 @@
 import React, {useContext} from 'react'
-import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
-import '../css/ListControl.css'
 import {setSearchFilter} from '../store/action_creators/actions'
 
 export const SearchBar: React.FC = () => {
