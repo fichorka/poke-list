@@ -21,6 +21,7 @@
     justify-content: flex-end;
     align-items: center;
     text-align: right;
+    flex-wrap: wrap;
 }
 
 .control-label {
@@ -30,7 +31,7 @@
     flex-basis: 3;
 }
 
-.list-control__quantity {
+.list-control__item {
     font-size: 1rem;
     background: var(--bg-col-2);
     border-radius: .2rem;
@@ -40,10 +41,18 @@
     box-sizing: content-box;
     text-align-last: center;
     text-align: center;
-    flex-basis: 1;
+    margin: .25rem;
 }
 
-
-.list-control__quantity:hover {
+.list-control__item:active {
     background: var(--bg-col-3);
 }
+
+.list-control__item:disabled {
+    opacity: 0.5;
+}
+
+
+/* .list-control__item:hover {
+    background: var(--bg-col-3);
+} */

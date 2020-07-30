@@ -3,12 +3,21 @@ import '../css/PageControl.css'
 import StoreContext from '../store/StoreContext'
 import OptionList from './OptionList'
 import '../css/ListControl.css'
-import {setItemsPerPage, setShouldFetch} from '../store/action_creators/actions'
+import {
+  setItemsPerPage,
+  setShouldFetch,
+  setSearchFilter
+} from '../store/action_creators/actions'
+import FilterComponent from './FilterComponent'
 
 export const ListControl: React.FC = () => {
   const {state, dispatch} = useContext(StoreContext)
 
-  const {itemsPerPage, totalItems} = state
+  const {itemsPerPage, totalItems, searchFilter} = state
+
+  function handleInputChange(value) {
+    dispatch(setSearchFilter(value))
+  }
 
   function handleChange(value) {
     dispatch(setItemsPerPage(parseInt(value)))
@@ -16,17 +25,31 @@ export const ListControl: React.FC = () => {
   }
   return (
     <div className="list-control">
-      <div className="control-label">Items per page</div>
-      <select
+      <FilterComponent />
+      <input
+        disabled={state.totalItems !== state.itemsPerPage}
         name="cur-page"
-        className="list-control__quantity"
-        value={itemsPerPage}
+        className="list-control__item"
+        value={searchFilter}
         onChange={evt => {
-          handleChange(evt.target.value)
+          handleInputChange(evt.target.value)
         }}
-      >
-        <OptionList items={[10, 20, 30, totalItems]} />
-      </select>
+        placeholder="Search here"
+      ></input>
+
+      <div>
+        <div className="control-label">Items per page</div>
+        <select
+          name="cur-page"
+          className="list-control__item"
+          value={itemsPerPage}
+          onChange={evt => {
+            handleChange(evt.target.value)
+          }}
+        >
+          <OptionList items={[10, 20, 30, totalItems]} />
+        </select>
+      </div>
     </div>
   )
 }

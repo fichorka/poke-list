@@ -5,13 +5,13 @@ import PageControl from '../components/PageControl'
 import StoreContext from '../store/StoreContext'
 import ListControl from '../components/ListControl'
 import FilterComponent from '../components/FilterComponent'
+import SearchBar from '../components/SearchBar'
 
 export const HomePage: React.FC = () => {
   const {state} = useContext(StoreContext)
 
   return (
     <>
-      <FilterComponent />
       <ListControl />
       <PageControl
         totalPages={state.totalPages}

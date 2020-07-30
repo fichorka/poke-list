@@ -106,9 +106,11 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
       }
     case 'SET_FILTER_WHAT':
       const value = action.filterWhat === 'all' ? '' : state.listFilter.value
+
       return {
         ...state,
         curPage: 0,
+        totalItems: 0,
         pokemonPages: [],
         itemsPerPage: 10,
         totalPages: 1,
@@ -119,13 +121,16 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         }
       }
     case 'SET_FILTER_VALUE': {
-      // const pokemonPages =
-      //   state.listFilter.what === 'all' || action.filterValue.length
-      //     ? state.pokemonPages
-      //     : []
+      const pokemonPages =
+        state.listFilter.what !== 'all' && !action.filterValue.length
+          ? []
+          : state.pokemonPages
+      const totalItems = 0
       return {
         ...state,
-        // pokemonPages,
+        pokemonPages,
+        totalItems,
+        searchFilter: '',
         listFilter: {
           ...state.listFilter,
           value: action.filterValue

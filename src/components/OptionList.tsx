@@ -14,7 +14,7 @@ export const OptionList: React.FC<Props> = ({totalPages, items}: Props) => {
   else
     optionElements = items.map((item, i) => (
       <option key={`${item}-${i}`} value={item}>
-        {String(item)}
+        {String(item === '' ? 'Select an option' : item)}
       </option>
     ))
 
