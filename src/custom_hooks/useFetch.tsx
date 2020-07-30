@@ -12,7 +12,6 @@ import {
 function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
   useEffect(() => {
     if (!state.shouldFetch) return
-    dispatch(setShouldFetch(false))
 
     switch (state.listFilter.what) {
       case 'all':
@@ -22,16 +21,19 @@ function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
           fetchId: state.fetchId
         }).then(res => {
           setPokemonPage(state, dispatch, res)
+          dispatch(setShouldFetch(false))
         })
         break
       case 'type':
         fetchPokemonByType(state.listFilter.value).then(res => {
           setFilteredPokemonPage(res, dispatch)
+          dispatch(setShouldFetch(false))
         })
         break
       case 'ability':
         fetchPokemonByAbility(state.listFilter.value).then(res => {
           setFilteredPokemonPage(res, dispatch)
+          dispatch(setShouldFetch(false))
         })
     }
   }, [state.shouldFetch])

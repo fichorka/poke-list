@@ -40,6 +40,7 @@ export const ListControl: React.FC = () => {
       <div>
         <div className="control-label">Items per page</div>
         <select
+          disabled={state.listFilter.what !== 'all'}
           name="cur-page"
           className="list-control__item"
           value={itemsPerPage}

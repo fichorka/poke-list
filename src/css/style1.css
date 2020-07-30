@@ -50,10 +50,24 @@ body {
   color: var(--font-col);
   display: block;
   line-height: 1.3rem;
+  transition: opacity 1s;
 }
 
 .poke-list__item:empty {
   pointer-events: none;
+  color: var(--col-off);
+  transition: opacity 1s;
+}
+
+.poke-list.fetching {
+  transition: opacity 1s;
+}
+
+.fetching .poke-list__item:empty {
+  /* content: 'Loading...'; */
+  transition: opacity 1s;
+  opacity: 0.7;
+  animation: .2s ease-in 0s infinite alternate loading;
 }
 
 .poke-list__item:empty::before {
@@ -82,4 +96,14 @@ body {
 
 .modal-opener:hover {
   background: #6af8;
+}
+
+@keyframes loading {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: .3;
+  }
 }

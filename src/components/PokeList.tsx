@@ -19,7 +19,11 @@ export const PokeList: React.FC<Props> = ({items, itemsPerPage}: Props) => {
     const name = item ? item.name : ''
     result.push(<PokeListItem key={'pokemon' + i} name={name} />)
   }
-  return <div className="poke-list">{result}</div>
+  return (
+    <div className={state.shouldFetch ? 'poke-list fetching' : 'poke-list'}>
+      {result}
+    </div>
+  )
 }
 
 export default PokeList
