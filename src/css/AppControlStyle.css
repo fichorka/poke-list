@@ -48,6 +48,12 @@
     text-align: center;
     border: none;
     box-sizing: border-box;
+    user-select: none;
+}
+
+.ui-item.ui-item--right {
+    text-align: left;
+    text-align-last: left;
 }
 
 select.ui-item {

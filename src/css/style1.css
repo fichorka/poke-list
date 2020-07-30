@@ -36,6 +36,9 @@ body {
   font-family: var(--font-fam);
 }
 
+.poke-list {
+  user-select: none;
+}
 
 .poke-list__item {
   background: var(--bg-col-2);
@@ -48,6 +51,7 @@ body {
   display: block;
   line-height: 1.3rem;
   transition: opacity 1s;
+  user-select: none;
 }
 
 .poke-list__item:empty {
@@ -90,6 +94,7 @@ body {
 .ui-wrapper {
   background: var(--bg-col-2);
   border-radius: .2rem;
+  user-select: none;
 }
 
 @keyframes loading {

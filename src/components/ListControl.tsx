@@ -30,9 +30,11 @@ export const ListControl: React.FC = () => {
     <div className="control control--right">
       <FilterComponent />
       <input
+        size={15}
+        maxLength={20}
         disabled={totalItems !== itemsPerPage}
         name="cur-page"
-        className="ui-item control__item"
+        className="ui-item ui-item--right control__item"
         value={searchFilter}
         onChange={evt => {
           handleInputChange(evt.target.value)

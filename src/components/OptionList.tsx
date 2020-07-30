@@ -1,6 +1,9 @@
 import React from 'react'
 
-export const OptionList: React.FC<Props> = ({totalPages, items}: Props) => {
+export const OptionList: React.FC<Props> = ({
+  totalPages,
+  items = []
+}: Props) => {
   let optionElements = []
 
   if (totalPages)
