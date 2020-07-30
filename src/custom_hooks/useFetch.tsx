@@ -6,13 +6,15 @@ import fetchPokemonByAbility from '../api/fetchPokemonByAbility'
 import {
   setPokemonPage,
   setFilteredPokemonPage,
-  setShouldFetch
+  setShouldFetch,
+  setIsBeingFetched
 } from '../store/action_creators/actions'
 
 function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
   useEffect(() => {
     if (!state.shouldFetch) return
-
+    dispatch(setShouldFetch(false))
+    dispatch(setIsBeingFetched(true))
     switch (state.listFilter.what) {
       case 'all':
         fetchPokemonPage({
@@ -21,20 +23,23 @@ function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
           fetchId: state.fetchId
         }).then(res => {
           setPokemonPage(state, dispatch, res)
-          dispatch(setShouldFetch(false))
+          if (res.fetchId === state.fetchId) dispatch(setIsBeingFetched(false))
         })
         break
       case 'type':
-        fetchPokemonByType(state.listFilter.value).then(res => {
-          setFilteredPokemonPage(res, dispatch)
-          dispatch(setShouldFetch(false))
+        fetchPokemonByType(state.listFilter.value, state.fetchId).then(res => {
+          setFilteredPokemonPage(res.pokemonList, dispatch)
+          if (res.fetchId === state.fetchId) dispatch(setIsBeingFetched(false))
         })
         break
       case 'ability':
-        fetchPokemonByAbility(state.listFilter.value).then(res => {
-          setFilteredPokemonPage(res, dispatch)
-          dispatch(setShouldFetch(false))
-        })
+        fetchPokemonByAbility(state.listFilter.value, state.fetchId).then(
+          res => {
+            setFilteredPokemonPage(res.pokemonList, dispatch)
+            if (res.fetchId === state.fetchId)
+              dispatch(setIsBeingFetched(false))
+          }
+        )
     }
   }, [state.shouldFetch])
 }

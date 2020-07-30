@@ -99,3 +99,7 @@ export function setTypes(typeList: string[]): StoreAction {
 export function setAbilities(abilityList: string[]): StoreAction {
   return {type: 'SET_ABILITIES', abilityList: abilityList}
 }
+
+export function setIsBeingFetched(isBeingFetched: boolean): StoreAction {
+  return {type: 'SET_IS_BEING_FETCHED', isBeingFetched}
+}

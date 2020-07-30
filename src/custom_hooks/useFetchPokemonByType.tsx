@@ -9,8 +9,8 @@ function useFetchModalPokemon(
 ): void {
   useEffect(() => {
     if (type) {
-      fetchPokemonByType(type).then(res =>
-        dispatch(setPokemonByType(type, res))
+      fetchPokemonByType(type, Symbol()).then(res =>
+        dispatch(setPokemonByType(type, res.pokemonList))
       )
     }
   }, [type])

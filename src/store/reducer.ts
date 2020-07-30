@@ -1,9 +1,14 @@
 import {State, StoreAction} from '../types'
 import {Reducer} from 'react'
 
-const reducer: Reducer<State, StoreAction> = (state, action) => {
-  console.log(action.type)
+export default function(state: State, action: StoreAction): State {
+  // console.log(action.type)
   switch (action.type) {
+    case 'SET_IS_BEING_FETCHED':
+      return {
+        ...state,
+        isBeingFetched: action.isBeingFetched
+      }
     case 'SET_SHOULD_FETCH': {
       const fetchId = action.shouldFetch ? Symbol() : state.fetchId
       return {
@@ -87,23 +92,6 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
           ]
         }
     }
-    case 'SET_WHAT_FILTER':
-      return {
-        ...state,
-        listState: {
-          ...state.listFilter,
-          what: action.what
-        },
-        pokemonPages: []
-        // shouldFetch: true
-      }
-    case 'SET_LIST_FILTER':
-      return {
-        ...state,
-        listState: action.listFilter,
-        pokemonPages: []
-        // shouldFetch: true
-      }
     case 'SET_FILTER_WHAT':
       const value = action.filterWhat === 'all' ? '' : state.listFilter.value
 
@@ -121,14 +109,10 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         }
       }
     case 'SET_FILTER_VALUE': {
-      const pokemonPages =
-        state.listFilter.what !== 'all' && !action.filterValue.length
-          ? []
-          : state.pokemonPages
       const totalItems = 0
       return {
         ...state,
-        pokemonPages,
+        pokemonPages: [],
         totalItems,
         searchFilter: '',
         listFilter: {
@@ -158,4 +142,4 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
   }
 }
 
-export default reducer
+// export default reducer

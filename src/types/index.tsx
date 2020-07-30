@@ -37,6 +37,7 @@ export interface State {
   searchFilter: string
   typeList: string[]
   abilityList: string[]
+  isBeingFetched: boolean
 }
 
 export interface Store {
@@ -62,6 +63,7 @@ export interface StoreAction {
   searchFilter?: string
   typeList?: string[]
   abilityList?: string[]
+  isBeingFetched?: boolean
 }
 
 type TotalItems = number

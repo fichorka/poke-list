@@ -18,7 +18,8 @@ const initialState = {
   },
   searchFilter: '',
   typeList: [],
-  abilityList: []
+  abilityList: [],
+  isBeingFetched: false
 } as State
 
 export default initialState
