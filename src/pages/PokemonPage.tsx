@@ -8,13 +8,12 @@ export const PokemonPage: React.FC = () => {
   return (
     <div className="poke-details">
       <Link to="/">Go back</Link>
-      <h1>Details</h1>
       <Switch>
         <Route path={`${match.path}/:name`}>
           <PokemonDetails />
         </Route>
         <Route path={`${match.path}`}>
-          <h3>Please go back and select a Pokemon</h3>
+          <h3 className="title">Please go back and select a Pokemon</h3>
         </Route>
       </Switch>
     </div>

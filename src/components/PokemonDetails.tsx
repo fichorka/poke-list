@@ -1,12 +1,14 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import StoreContext from '../store/StoreContext'
 import useFetchDetails from '../custom_hooks/useFetchDetails'
 import {setModalState} from '../store/action_creators/actions'
+import '../css/pokemonDetailsStyle.css'
 
 export const PokemonDetails: React.FC = () => {
   const {name} = useParams()
   const {state, dispatch} = useContext(StoreContext)
+  const [isLoading, setImgClass] = useState(true)
 
   const shouldFetch =
     !state.pokemonDetails[name] ||
@@ -16,14 +18,44 @@ export const PokemonDetails: React.FC = () => {
 
   const target = state.pokemonDetails[name]
   const pokemon = target && !target.isBeingFetched ? target : null
+  // let imgClass = 'poke-image poke-image--loading'
+
+  function handleLoad() {
+    setImgClass(false)
+  }
 
   return (
     <div>
-      <h3>Pokemon name: {pokemon && pokemon.name}</h3>
-      <div>
-        <div>Abilities: {pokemon && pokemon.abilities.join(', ')}</div>
-        <div>
-          Types:{' '}
+      <h3 className={pokemon ? 'title' : 'title title--loading'}>
+        {pokemon && pokemon.name}
+      </h3>
+      <div
+        className={
+          isLoading
+            ? 'image-container image-container--loading'
+            : 'image-container '
+        }
+      >
+        {isLoading && <div className="spinner"></div>}
+        <img
+          className={
+            isLoading ? 'poke-image poke-image--loading' : 'poke-image '
+          }
+          onLoad={handleLoad}
+          src={pokemon ? pokemon.imageUrl : ''}
+        ></img>
+      </div>
+      <div
+        className={
+          pokemon ? 'feature-list ' : 'feature-list feature-list--loading'
+        }
+      >
+        <div className="feature-list__item">
+          <span className="text--bold">Abilities:</span>{' '}
+          {pokemon && pokemon.abilities.join(', ')}
+        </div>
+        <div className="feature-list__item">
+          <span className="text--bold">Types:</span>{' '}
           {pokemon &&
             pokemon.types.map((t, i, arr) => (
               <>
@@ -40,10 +72,15 @@ export const PokemonDetails: React.FC = () => {
               </>
             ))}
         </div>
-        <div>Weight: {pokemon && pokemon.weight}</div>
-        <div>Height: {pokemon && pokemon.height}</div>
+        <div className="feature-list__item">
+          <span className="text--bold">Weight:</span>{' '}
+          {pokemon && pokemon.weight}
+        </div>
+        <div className="feature-list__item">
+          <span className="text--bold">Height:</span>{' '}
+          {pokemon && pokemon.height}
+        </div>
       </div>
-      {pokemon && <img src={pokemon.imageUrl}></img>}
     </div>
   )
 }

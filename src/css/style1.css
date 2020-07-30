@@ -87,15 +87,8 @@ body {
   background: var(--bg-col-3);
 }
 
-.modal-opener {
-  color: blue;
+.text--bold {
   font-weight: bold;
-  cursor: default;
-  border-radius: .2rem;
-}
-
-.modal-opener:hover {
-  background: #6af8;
 }
 
 @keyframes loading {

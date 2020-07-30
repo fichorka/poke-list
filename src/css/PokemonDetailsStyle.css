@@ -1,0 +1,79 @@
+.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.title--loading {
+    animation: .2s ease-in 0s infinite alternate loading;
+}
+
+.title:empty:after {
+    Content: 'pokemon';
+    color: var(--bg-col-2);
+    border-radius: .2rem;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 8rem;
+    background: var(--bg-col-2);
+}
+
+.title::first-letter {
+    text-transform: capitalize;
+}
+
+.image-container {
+    width: 8rem;
+    height: 8rem;
+    background: transparent;
+    transition: background .2s;
+    margin: .5rem auto;
+}
+
+.image-container--loading {
+    background: var(--bg-col-2);
+    animation: .2s ease-in 0s infinite alternate loading;
+}
+
+.poke-image {
+    width: 8rem;
+    height: 8rem;
+    transition: opacity .5s;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-col-2);
+    border-radius: .2rem;
+}
+
+
+.poke-image--loading {
+    opacity: 0
+}
+
+
+.feature-list {
+    padding: 1rem;
+    background: var(--bg-col-2);
+    border-radius: .2rem;
+}
+
+.feature-list.feature-list--loading {
+    animation: .2s ease-in 0s infinite alternate loading;
+}
+
+.feature-list__item {
+    line-height: 1.5rem;
+}
+
+.modal-opener {
+    color: blue;
+    font-weight: bold;
+    cursor: default;
+    border-radius: .2rem;
+}
+
+.modal-opener:hover {
+    background: #6af8;
+}
