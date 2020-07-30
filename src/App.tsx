@@ -14,14 +14,16 @@ import useStateInit from './custom_hooks/useStateInit'
 
 export const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const store = {state, dispatch}
 
+  // custom hooks for managing state
   useShouldFetch(state, dispatch)
   useFetch(state, dispatch)
   useFetchModalPokemon(state.selectedModalType, dispatch)
   useStateInit(state, dispatch)
 
   return (
-    <StoreContext.Provider value={{state, dispatch}}>
+    <StoreContext.Provider value={store}>
       <Router>
         <Switch>
           <Route path="/pokemon">

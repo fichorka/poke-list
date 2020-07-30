@@ -1,4 +1,4 @@
-import {Dispatch, ReducerAction, Reducer} from 'react'
+import {Dispatch} from 'react'
 
 export type PokemonPages = PokemonList[]
 
@@ -58,7 +58,7 @@ export interface StoreAction {
   pokemonType?: string
   pokemonList?: PokemonList
   filterValue?: string
-  filterWhat?: string
+  filterWhat?: What
   shouldFetch?: boolean
   searchFilter?: string
   typeList?: string[]
@@ -75,9 +75,11 @@ export interface PokemonPageReturn {
 }
 
 export interface ListFilter {
-  what: 'all' | 'name' | 'type' | 'ability'
+  what: What
   value: string
 }
+
+export type What = 'all' | 'name' | 'type' | 'ability'
 
 export interface PokeApiResponse {
   count?: number

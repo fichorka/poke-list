@@ -6,28 +6,31 @@ import {setModalState} from '../store/action_creators/actions'
 import '../css/pokemonDetailsStyle.css'
 
 export const PokemonDetails: React.FC = () => {
+  // route: /pokemon/:name
+
+  // state local/global
   const {name} = useParams()
   const {state, dispatch} = useContext(StoreContext)
   const [isImgLoading, setIsImgLoading] = useState(true)
 
-  const shouldFetch =
+  const shouldFetch: boolean =
     !state.pokemonDetails[name] ||
     (!state.pokemonDetails[name] && state.pokemonDetails[name].isBeingFetched)
 
+  // custom hook for fetching Pokemon details
   useFetchDetails(shouldFetch, name, dispatch)
 
   const target = state.pokemonDetails[name]
   const pokemon = target && !target.isBeingFetched ? target : null
 
-  function handleLoad() {
+  function handleImgLoad() {
     setIsImgLoading(false)
   }
 
+  // messy, might refactor this...
   return (
     <div>
-      <h3 className={pokemon ? 'title' : 'title title--loading'}>
-        {pokemon && pokemon.name}
-      </h3>
+      <h3 className="title">{name}</h3>
       <div
         className={
           isImgLoading
@@ -40,7 +43,7 @@ export const PokemonDetails: React.FC = () => {
           className={
             isImgLoading ? 'poke-image poke-image--loading' : 'poke-image '
           }
-          onLoad={handleLoad}
+          onLoad={handleImgLoad}
           src={pokemon ? pokemon.imageUrl : ''}
         ></img>
       </div>

@@ -9,7 +9,7 @@ export const ModalComponent: React.FC = () => {
     p => p.type === state.selectedModalType
   )[0]
   const pokemon = pokemonList ? pokemonList.pokemon : []
-  debugger
+
   return (
     <div className="modal-container">
       <div className="modal">

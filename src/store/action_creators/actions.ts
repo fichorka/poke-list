@@ -4,7 +4,7 @@ import {
   PokemonList,
   State,
   PokemonPageReturn,
-  ListFilter
+  What
 } from '../../types'
 import {Dispatch} from 'react'
 
@@ -76,15 +76,11 @@ export function setPokemonByType(
   return {type: 'SET_POKEMON_BY_TYPE', pokemonType, pokemonList}
 }
 
-export function setListFilter(listFilter: ListFilter): StoreAction {
-  return {type: 'SET_LIST_FILTER', listFilter}
-}
-
 export function setFilterValue(filterValue: string): StoreAction {
   return {type: 'SET_FILTER_VALUE', filterValue}
 }
 
-export function setFilterWhat(filterWhat: string): StoreAction {
+export function setFilterWhat(filterWhat: What): StoreAction {
   return {type: 'SET_FILTER_WHAT', filterWhat}
 }
 

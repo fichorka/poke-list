@@ -9,15 +9,20 @@ import {
 import FilterComponent from './FilterComponent'
 
 export const ListControl: React.FC = () => {
-  const {state, dispatch} = useContext(StoreContext)
+  // Features filtering, serching, and itemsPerPage
 
-  const {itemsPerPage, totalItems, searchFilter} = state
+  const {
+    state: {itemsPerPage, totalItems, searchFilter, listFilter},
+    dispatch
+  } = useContext(StoreContext)
 
   function handleInputChange(value) {
+    // search
     dispatch(setSearchFilter(value))
   }
 
-  function handleChange(value) {
+  function handleQuantityChange(value) {
+    // itemsPerPage
     dispatch(setItemsPerPage(parseInt(value)))
     dispatch(setShouldFetch(true))
   }
@@ -25,7 +30,7 @@ export const ListControl: React.FC = () => {
     <div className="control control--right">
       <FilterComponent />
       <input
-        disabled={state.totalItems !== state.itemsPerPage}
+        disabled={totalItems !== itemsPerPage}
         name="cur-page"
         className="ui-item control__item"
         value={searchFilter}
@@ -38,12 +43,12 @@ export const ListControl: React.FC = () => {
       <div className="ui-wrapper control__item">
         <div className="control-label">Items per page</div>
         <select
-          disabled={state.listFilter.what !== 'all'}
+          disabled={listFilter.what !== 'all'}
           name="cur-page"
           className="ui-item"
           value={itemsPerPage}
           onChange={evt => {
-            handleChange(evt.target.value)
+            handleQuantityChange(evt.target.value)
           }}
         >
           <OptionList items={[10, 20, 30, totalItems]} />

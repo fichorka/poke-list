@@ -1,5 +1,4 @@
 import {State, StoreAction} from '../types'
-import {Reducer} from 'react'
 
 export default function(state: State, action: StoreAction): State {
   // console.log(action.type)
@@ -137,9 +136,8 @@ export default function(state: State, action: StoreAction): State {
         abilityList: action.abilityList
       }
     default:
-      console.log(action)
-      debugger
+      console.error('Unknown action: ' + action.type)
+      return state
+    
   }
 }
-
-// export default reducer

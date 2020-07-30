@@ -13,31 +13,40 @@ import {
 function useFetch(state: State, dispatch: Dispatch<StoreAction>): void {
   useEffect(() => {
     if (!state.shouldFetch) return
+
     dispatch(setShouldFetch(false))
     dispatch(setIsBeingFetched(true))
+
     switch (state.listFilter.what) {
+      // check which pokemon list to fetch: /pokemon/, /type/{name}/, or /ability/{name}/
       case 'all':
         fetchPokemonPage({
           page: state.curPage,
           itemsPerPage: state.itemsPerPage,
           fetchId: state.fetchId
         }).then(res => {
-          setPokemonPage(state, dispatch, res)
-          if (res.fetchId === state.fetchId) dispatch(setIsBeingFetched(false))
+          if (res.fetchId === state.fetchId) {
+            // check whether fetchIds match to avoid overlapping responses
+            setPokemonPage(state, dispatch, res)
+            dispatch(setIsBeingFetched(false))
+          }
         })
         break
       case 'type':
         fetchPokemonByType(state.listFilter.value, state.fetchId).then(res => {
-          setFilteredPokemonPage(res.pokemonList, dispatch)
-          if (res.fetchId === state.fetchId) dispatch(setIsBeingFetched(false))
+          if (res.fetchId === state.fetchId) {
+            setFilteredPokemonPage(res.pokemonList, dispatch)
+            dispatch(setIsBeingFetched(false))
+          }
         })
         break
       case 'ability':
         fetchPokemonByAbility(state.listFilter.value, state.fetchId).then(
           res => {
-            setFilteredPokemonPage(res.pokemonList, dispatch)
-            if (res.fetchId === state.fetchId)
+            if (res.fetchId === state.fetchId) {
+              setFilteredPokemonPage(res.pokemonList, dispatch)
               dispatch(setIsBeingFetched(false))
+            }
           }
         )
     }

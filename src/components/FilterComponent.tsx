@@ -24,8 +24,6 @@ export const FilterComponent: React.FC = () => {
     dispatch(setFilterValue(value))
   }
 
-  console.log(state.totalItems, state.totalPages, state.pokemonPages)
-
   return (
     <>
       <div className="ui-wrapper control__item">
@@ -41,10 +39,6 @@ export const FilterComponent: React.FC = () => {
           <OptionList items={['all', 'type', 'ability']} />
         </select>
       </div>
-      {/* </div>
-
-      <div>
-        <div className="control-label">Filter by</div> */}
       <div className="control__item">
         <select
           disabled={state.listFilter.what === 'all'}

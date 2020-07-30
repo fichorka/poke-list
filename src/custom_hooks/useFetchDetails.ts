@@ -1,5 +1,4 @@
 import {useEffect, Dispatch} from 'react'
-import fetchPokemonPage from '../api/fetchPokemonPage'
 import fetchPokemonDetails from '../api/fetchPokemonDetails'
 import {setPokemonDetails} from '../store/action_creators/actions'
 import {StoreAction} from '../types'

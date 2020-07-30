@@ -1,10 +1,13 @@
 import React from 'react'
 import {Switch, Route, useRouteMatch} from 'react-router-dom'
-import PokemonDetails from '../components/PokemonDetails'
+import PokemonDetails from './PokemonDetails'
 import {Link} from 'react-router-dom'
 
 export const PokemonPage: React.FC = () => {
+  // route: /pokemon/
+
   const match = useRouteMatch()
+
   return (
     <div className="poke-details">
       <Link to="/" className="back-btn">

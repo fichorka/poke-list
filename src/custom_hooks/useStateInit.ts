@@ -1,16 +1,6 @@
 import {useEffect, Dispatch} from 'react'
-import fetchPokemonPage from '../api/fetchPokemonPage'
 import {State, StoreAction} from '../types'
-import fetchPokemonByType from '../api/fetchPokemonByType'
-import fetchPokemonByAbility from '../api/fetchPokemonByAbility'
-import {
-  setPokemonPage,
-  setFilteredPokemonPage,
-  setShouldFetch,
-  setIsBeingFetched,
-  setAbilities,
-  setTypes
-} from '../store/action_creators/actions'
+import {setAbilities, setTypes} from '../store/action_creators/actions'
 import fetchTypes from '../api/fetchTypes'
 import fetchAbilities from '../api/fetchAbilities'
 

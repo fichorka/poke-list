@@ -1,5 +1,4 @@
 import fetchUtil from './fetchUtil'
-import {Pokemon} from '../types'
 
 const url = 'https://pokeapi.co/api/v2/ability/'
 
