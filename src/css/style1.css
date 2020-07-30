@@ -101,3 +101,14 @@ body {
     opacity: .3;
   }
 }
+
+
+@keyframes loading-bg {
+  from {
+    background: var(--bg-col-2);
+  }
+
+  to {
+    background: var(--bg-col-3);
+  }
+}

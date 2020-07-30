@@ -5,7 +5,7 @@
     }
 
     .modal-list {
-        max-height: 65vh;
+        height: 65vh;
     }
 }
 
@@ -36,18 +36,24 @@
     background: var(--bg-col-2);
     color: blue;
     padding: .25rem;
-    margin-top: .5rem;
+    margin: .5rem 0;
     text-align: center;
     font-weight: bold;
+    border-radius: .2rem .2rem 0 0;
     cursor: default;
     font-size: .8rem;
-    border-bottom: .1rem solid #333;
+    /* border-bottom: .1rem solid #333; */
 }
 
 .modal-list {
-    max-height: 50vh;
+    height: 50vh;
     overflow: hidden;
     overflow-y: auto;
+    margin-bottom: .5rem;
+}
+
+.modal-list.modal-list:empty {
+    animation: .2s ease-in 0s infinite alternate loading-bg;
 }
 
 .modal__row {
