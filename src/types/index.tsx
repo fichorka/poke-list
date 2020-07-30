@@ -34,6 +34,9 @@ export interface State {
   fetchId?: symbol
   isModalOpen: boolean
   listFilter: ListFilter | null
+  searchFilter: string
+  typeList: string[]
+  abilityList: string[]
 }
 
 export interface Store {
@@ -53,8 +56,12 @@ export interface StoreAction {
   selectedModalType?: string | null
   pokemonType?: string
   pokemonList?: PokemonList
-  listFilter?: ListFilter | null
+  filterValue?: string
+  filterWhat?: string
   shouldFetch?: boolean
+  searchFilter?: string
+  typeList?: string[]
+  abilityList?: string[]
 }
 
 type TotalItems = number

@@ -1,12 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PokeListItem from './PokeListItem'
 import {Pokemon} from '../types'
+import StoreContext from '../store/StoreContext'
+import {applyFilter} from '../utils'
 
 export const PokeList: React.FC<Props> = ({items, itemsPerPage}: Props) => {
+  const {state} = useContext(StoreContext)
   const result = []
 
+  // filtering
+  const filteredItems = state.searchFilter.length
+    ? applyFilter(items, state.searchFilter)
+    : items
+
+  // items
   for (let i = 0; i < itemsPerPage; i++) {
-    const item = items && items[i] ? items[i] : null
+    const item = filteredItems && filteredItems[i] ? filteredItems[i] : null
     const name = item ? item.name : ''
     result.push(<PokeListItem key={'pokemon' + i} name={name} />)
   }

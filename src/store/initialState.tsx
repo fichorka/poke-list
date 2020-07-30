@@ -15,7 +15,10 @@ const initialState = {
   listFilter: {
     what: 'all',
     value: ''
-  }
+  },
+  searchFilter: '',
+  typeList: [],
+  abilityList: []
 } as State
 
 export default initialState

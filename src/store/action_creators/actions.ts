@@ -3,29 +3,10 @@ import {
   StoreAction,
   PokemonList,
   State,
-  PokemonPageReturn
+  PokemonPageReturn,
+  ListFilter
 } from '../../types'
 import {Dispatch} from 'react'
-
-export function setSinglePokemonToPage(
-  pokemon: Pokemon,
-  dispatch: Dispatch<StoreAction>
-): void {
-  dispatch({
-    type: 'SET_TOTAL_ITEMS',
-    totalItems: 1
-  })
-  dispatch({
-    type: 'SET_ITEMS_PER_PAGE',
-    itemsPerPage: 1
-  })
-  dispatch({type: 'SET_POKEMON_PAGE', pokemonPage: [pokemon], index: 0})
-  dispatch({type: 'SET_POKEMON_DETAILS', singlePokemon: pokemon})
-  dispatch({
-    type: 'SET_ITEMS_PER_PAGE',
-    itemsPerPage: 1
-  })
-}
 
 export function setPokemonPage(
   state: State,
@@ -93,4 +74,28 @@ export function setPokemonByType(
   pokemonList: PokemonList
 ): StoreAction {
   return {type: 'SET_POKEMON_BY_TYPE', pokemonType, pokemonList}
+}
+
+export function setListFilter(listFilter: ListFilter): StoreAction {
+  return {type: 'SET_LIST_FILTER', listFilter}
+}
+
+export function setFilterValue(filterValue: string): StoreAction {
+  return {type: 'SET_FILTER_VALUE', filterValue}
+}
+
+export function setFilterWhat(filterWhat: string): StoreAction {
+  return {type: 'SET_FILTER_WHAT', filterWhat}
+}
+
+export function setSearchFilter(searchFilter: string): StoreAction {
+  return {type: 'SET_SEARCH_FILTER', searchFilter}
+}
+
+export function setTypes(typeList: string[]): StoreAction {
+  return {type: 'SET_TYPES', typeList: typeList}
+}
+
+export function setAbilities(abilityList: string[]): StoreAction {
+  return {type: 'SET_ABILITIES', abilityList: abilityList}
 }

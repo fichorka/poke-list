@@ -2,7 +2,7 @@ import {State, StoreAction} from '../types'
 import {Reducer} from 'react'
 
 const reducer: Reducer<State, StoreAction> = (state, action) => {
-  console.log(state)
+  console.log(action.type)
   switch (action.type) {
     case 'SET_SHOULD_FETCH': {
       const fetchId = action.shouldFetch ? Symbol() : state.fetchId
@@ -26,11 +26,12 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
       return {
         ...state,
         totalPages,
-        shouldFetch: true,
+        // shouldFetch: true,
         fetchId: Symbol(),
         itemsPerPage: action.itemsPerPage,
         pokemonPages: [],
-        curPage: 0
+        curPage: 0,
+        searchFilter: ''
       }
     }
     case 'SET_TOTAL_ITEMS': {
@@ -38,7 +39,8 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
       return {
         ...state,
         totalPages,
-        totalItems: action.totalItems
+        totalItems: action.totalItems,
+        searchFilter: ''
       }
     }
     case 'SET_CUR_PAGE': {
@@ -52,7 +54,8 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
         ...state,
         curPage: action.curPage,
         shouldFetch,
-        fetchId
+        fetchId,
+        searchFilter: ''
       }
     }
     case 'SET_POKEMON_DETAILS':
@@ -84,12 +87,65 @@ const reducer: Reducer<State, StoreAction> = (state, action) => {
           ]
         }
     }
+    case 'SET_WHAT_FILTER':
+      return {
+        ...state,
+        listState: {
+          ...state.listFilter,
+          what: action.what
+        },
+        pokemonPages: []
+        // shouldFetch: true
+      }
     case 'SET_LIST_FILTER':
       return {
         ...state,
         listState: action.listFilter,
         pokemonPages: []
         // shouldFetch: true
+      }
+    case 'SET_FILTER_WHAT':
+      const value = action.filterWhat === 'all' ? '' : state.listFilter.value
+      return {
+        ...state,
+        curPage: 0,
+        pokemonPages: [],
+        itemsPerPage: 10,
+        totalPages: 1,
+        searchFilter: '',
+        listFilter: {
+          what: action.filterWhat,
+          value: value
+        }
+      }
+    case 'SET_FILTER_VALUE': {
+      // const pokemonPages =
+      //   state.listFilter.what === 'all' || action.filterValue.length
+      //     ? state.pokemonPages
+      //     : []
+      return {
+        ...state,
+        // pokemonPages,
+        listFilter: {
+          ...state.listFilter,
+          value: action.filterValue
+        }
+      }
+    }
+    case 'SET_SEARCH_FILTER':
+      return {
+        ...state,
+        searchFilter: action.searchFilter
+      }
+    case 'SET_TYPES':
+      return {
+        ...state,
+        typeList: action.typeList
+      }
+    case 'SET_ABILITIES':
+      return {
+        ...state,
+        abilityList: action.abilityList
       }
     default:
       console.log(action)
