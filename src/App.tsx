@@ -9,10 +9,8 @@ import initialState from './store/initialState'
 import useFetch from './custom_hooks/useFetch'
 import ModalComponent from './components/ModalComponent'
 import useFetchModalPokemon from './custom_hooks/useFetchPokemonByType'
-import fetchTypes from './api/fetchTypes'
-import {setTypes, setAbilities} from './store/action_creators/actions'
-import fetchAbilities from './api/fetchAbilities'
 import useShouldFetch from './custom_hooks/useShouldFetch'
+import useStateInit from './custom_hooks/useStateInit'
 
 export const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -20,14 +18,7 @@ export const App: React.FC = () => {
   useShouldFetch(state, dispatch)
   useFetch(state, dispatch)
   useFetchModalPokemon(state.selectedModalType, dispatch)
-  if (!state.typeList.length)
-    fetchTypes().then(res => {
-      dispatch(setTypes(res))
-    })
-  if (!state.abilityList.length)
-    fetchAbilities().then(res => {
-      dispatch(setAbilities(res))
-    })
+  useStateInit(state, dispatch)
 
   return (
     <StoreContext.Provider value={{state, dispatch}}>
