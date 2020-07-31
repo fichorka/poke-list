@@ -56,7 +56,7 @@ export const PokemonDetails: React.FC = () => {
         ></img>
         {pokemon && pokemon.imageUrl.length > 1 && (
           <div className="img-label">{`${imgUrlIndex + 1} / ${
-            pokemon.imageUrl.length + 1
+            pokemon.imageUrl.length
           }`}</div>
         )}
       </div>
