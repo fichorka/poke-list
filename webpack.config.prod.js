@@ -10,7 +10,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
-    // publicPath: '/'
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -22,7 +21,7 @@ module.exports = {
     new OptimizeCssAssetsPlugin()
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css']
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.html']
   },
   module: {
     rules: [
@@ -34,6 +33,13 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /_redirects/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name]'
+        }
       }
     ]
   }
