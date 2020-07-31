@@ -12,6 +12,7 @@ export const PokemonDetails: React.FC = () => {
   const {name} = useParams()
   const {state, dispatch} = useContext(StoreContext)
   const [isImgLoading, setIsImgLoading] = useState(true)
+  const [imgUrlIndex, setImgUrlIndex] = useState(0)
 
   const shouldFetch: boolean =
     !state.pokemonDetails[name] ||
@@ -27,6 +28,13 @@ export const PokemonDetails: React.FC = () => {
     setIsImgLoading(false)
   }
 
+  function handleImgClick() {
+    setIsImgLoading(true)
+    if (pokemon && pokemon.imageUrl[imgUrlIndex + 1])
+      setImgUrlIndex(imgUrlIndex + 1)
+    else setImgUrlIndex(0)
+  }
+
   // messy, might refactor this...
   return (
     <div>
@@ -38,14 +46,19 @@ export const PokemonDetails: React.FC = () => {
             : 'image-container '
         }
       >
-        {isImgLoading && <div className="spinner"></div>}
         <img
           className={
             isImgLoading ? 'poke-image poke-image--loading' : 'poke-image '
           }
+          onClick={handleImgClick}
           onLoad={handleImgLoad}
-          src={pokemon ? pokemon.imageUrl : ''}
+          src={pokemon ? pokemon.imageUrl[imgUrlIndex] : ''}
         ></img>
+        {pokemon && pokemon.imageUrl.length > 1 && (
+          <div className="img-label">{`${imgUrlIndex + 1} / ${
+            pokemon.imageUrl.length + 1
+          }`}</div>
+        )}
       </div>
       <div
         className={

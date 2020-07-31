@@ -9,7 +9,12 @@ function fetchPokemonDetails(name: string): Promise<Pokemon> {
     name: name,
     abilities: res.abilities.map(a => a.ability.name),
     types: res.types.map(t => t.type.name),
-    imageUrl: res.sprites.front_default,
+    imageUrl: Array.from(
+      new Set([
+        res.sprites.front_default,
+        ...Object.values(res.sprites).filter(v => typeof v === 'string')
+      ])
+    ),
     weight: res.weight,
     height: res.height
   }))

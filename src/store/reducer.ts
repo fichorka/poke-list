@@ -1,7 +1,7 @@
 import {State, StoreAction} from '../types'
 
 export default function(state: State, action: StoreAction): State {
-  // console.log(action.type)
+  console.log(state)
   switch (action.type) {
     case 'SET_IS_BEING_FETCHED':
       return {

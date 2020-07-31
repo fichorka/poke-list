@@ -17,7 +17,7 @@ export interface Pokemon {
   types?: string[]
   weight?: number
   height?: number
-  imageUrl?: string
+  imageUrl?: string[]
   isBeingFetched?: boolean
 }
 
