@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import StoreContext from '../store/StoreContext'
 import useFetchDetails from '../custom_hooks/useFetchDetails'
 import {setModalState} from '../store/action_creators/actions'
-import '../css/pokemonDetailsStyle.css'
+import '../css/PokemonDetailsStyle.css'
 
 export const PokemonDetails: React.FC = () => {
   // route: /pokemon/:name
