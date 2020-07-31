@@ -17,16 +17,17 @@ or
 
 `npm run build` to output production files into `dist` folder
 
-## Details
-| Function          | Tool         |
-| ----------------- | ------------ |
-| **Bundling**      | webpack      |
-| **Transpiling**   | Babel        |
-| **Type checking** | Typescript   |
-| **Framework**     | React        |
-| **Routing**       | React Router |
-| **Linter**        | ES Lint      |
-| **Formatting**    | Prettier     |
+## Tools
+| Function            | Tool         |
+| ------------------- | ------------ |
+| **Bundling**        | webpack      |
+| **Transpiling**     | Babel        |
+| **Framework**       | React        |
+| **State Managment** | React hooks  |
+| **Type checking**   | Typescript   |
+| **Routing**         | react-router |
+| **Linter**          | ES-Lint      |
+| **Formatting**      | Prettier     |
 
 ## Notes
 Virtual server, created by `npm start` script serves correct files on reload of any route. However, production files, and a deployment on Netlify (see above) produced by `npm run build` do not. They require a server of their own, which needs to be configured to enable single page application routing.
