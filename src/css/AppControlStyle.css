@@ -1,72 +1,75 @@
 @media screen and (max-aspect-ratio: 3/4) {
-    .control--page * {
-        flex-grow: 1;
-    }
+  .control--page * {
+    flex-grow: 1;
+  }
 }
 
 @media screen and (min-aspect-ratio: 3/4) {
-    .control--page * {
-        min-width: 4.5rem;
-    }
+  .control--page * {
+    min-width: 4.5rem;
+  }
 }
 
-
 .control {
-    margin: 0 .25rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+  margin: 0 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .control--center {
-    justify-content: center;
+  justify-content: center;
 }
 
 .control--right {
-    justify-content: flex-end;
-    text-align: right;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .control__item {
-    margin: .25rem;
+  margin: 0.25rem;
 }
 
 .control-label {
-    display: inline-block;
-    padding: .5rem .25rem .5rem 1rem;
-    font-size: 1rem;
-    line-height: 1.3rem;
+  display: inline-block;
+  padding: 0.5rem 0.25rem 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
 }
 
 .ui-item {
-    padding: .5rem .5rem;
-    background: var(--bg-col-2);
-    border-radius: .2rem;
-    line-height: 1.3rem;
-    font-size: 1rem;
-    text-align-last: center;
-    text-align: center;
-    border: none;
-    box-sizing: border-box;
-    user-select: none;
+  padding: 0.5rem 0.5rem;
+  background: var(--bg-col-2);
+  border-radius: 0.2rem;
+  line-height: 1.3rem;
+  font-size: 1rem;
+  text-align-last: center;
+  text-align: center;
+  border: none;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.ui-item.ui-item:active {
+  background: var(--bg-col-3);
 }
 
 .ui-item.ui-item--right {
-    text-align: left;
-    text-align-last: left;
+  text-align: left;
+  text-align-last: left;
 }
 
 select.ui-item {
-    border: .1rem solid var(--bg-col-3);
+  border: 0.1rem solid var(--bg-col-3);
 }
 
 .ui-item:disabled {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .control__label {
-    display: inline-block;
-    padding: .5rem 1rem;
-    font-size: .8rem;
-    flex-basis: 3;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  flex-basis: 3;
 }

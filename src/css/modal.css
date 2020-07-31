@@ -1,71 +1,74 @@
 @media screen and (max-aspect-ratio: 3/4) {
-    .modal.modal {
-        width: 90%;
-        min-width: 90%;
-    }
+  .modal.modal {
+    width: 90%;
+    min-width: 90%;
+  }
 
-    .modal-list {
-        height: 65vh;
-    }
+  .modal-list {
+    height: 65vh;
+  }
 }
 
 .modal-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(190, 190, 190, 0.5);
-    top: 0;
-    left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(190, 190, 190, 0.5);
+  top: 0;
+  left: 0;
 }
 
 .modal {
-    width: 40%;
-    min-width: 50vh;
-    border-radius: .2rem;
-    border: .1rem solid var(--font-col);
-    box-shadow: 0 0 .5rem -.1rem black;
-    padding: 0 .5rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--bg-col);
+  width: 40%;
+  min-width: 50vh;
+  border-radius: 0.2rem;
+  border: 0.1rem solid var(--font-col);
+  box-shadow: 0 0 0.5rem -0.1rem black;
+  padding: 0 0.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-col);
 }
 
 .modal__control {
-    background: var(--bg-col-2);
-    color: blue;
-    padding: .25rem;
-    margin: .5rem 0;
-    text-align: center;
-    font-weight: bold;
-    border-radius: .2rem .2rem 0 0;
-    cursor: default;
-    font-size: .8rem;
-    /* border-bottom: .1rem solid #333; */
+  background: var(--bg-col-2);
+  padding: 0.25rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  border-radius: 0.2rem;
+  cursor: default;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+  cursor: pointer;
+}
+
+.modal__control:active {
+  background: var(--bg-col-3);
 }
 
 .modal-list {
-    height: 50vh;
-    overflow: hidden;
-    overflow-y: auto;
-    margin-bottom: .5rem;
+  height: 50vh;
+  overflow: hidden;
+  overflow-y: auto;
+  margin-bottom: 0.5rem;
 }
 
 .modal-list.modal-list:empty {
-    animation: .2s ease-in 0s infinite alternate loading-bg;
+  animation: 0.2s ease-in 0s infinite alternate loading-bg;
 }
 
 .modal__row {
-    background: var(--bg-col-2);
-    padding: 0.25rem;
-    font-size: .8rem;
-    margin: 0.25rem 0;
-    border-radius: 0.2rem;
-    color: var(--font-col);
-    line-height: 1.3rem;
+  background: var(--bg-col-2);
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  margin: 0.25rem 0;
+  border-radius: 0.2rem;
+  color: var(--font-col);
+  line-height: 1.3rem;
 }
 
 .modal__row:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
