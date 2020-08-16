@@ -33,13 +33,6 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
-      },
-      {
-        test: /_redirects/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name]'
-        }
       }
     ]
   }
